@@ -1,0 +1,150 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:head>
+        <title>Add CMR</title>
+    </h:head>
+    <f:metadata>
+        <f:viewParam name="cId" value="#{addCmr.CId}"/>
+    </f:metadata>
+    <h:body>
+        <ui:composition template="./layoutCL.xhtml">
+
+            <ui:define name="content">
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h2>Cmr for Course #{addCmr.course.CName}</h2>
+                    </div>
+
+<!--                    <ui:fragment rendered="#{addCmr.m eq ''}">
+</ui:fragment>-->
+                    <ui:fragment rendered="#{addCmr.m ne null}">
+                        <div class="alert alert-warning">
+                            <strong>Warning!</strong> #{addCmr.m}   
+                        </div>
+                    </ui:fragment>
+                    <h:form>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="panel panel-default" style="border: none">
+
+                                    <div class="panel-body" >                                            
+                                        <p>
+                                            <label style="font-size: 15px" > Student count: </label>
+                                            <input value="#{addCmr.count}" type="text" class="form-control" style="width: 95%" />
+                                        </p>
+                                        <p>
+                                            <label style="font-size: 15px" > mean of cw1: </label>
+                                            <input value="#{addCmr.meancw1}" type="text" class="form-control" style="width: 95%"  />
+                                        </p>
+                                        <p>
+                                            <label style="font-size: 15px" >  mean of cw2: </label>
+                                            <input value="#{addCmr.meancw2}" type="text" class="form-control" style="width: 95%"  />
+                                        </p>
+                                        <p>
+                                            <label style="font-size: 15px" > SMean of exam: </label>
+                                            <input value="#{addCmr.meanexam}" type="text" class="form-control" style="width: 95%"  />
+                                        </p>
+                                        <p>
+                                            <label style="font-size: 15px" > median of cw1: </label>
+                                            <input value="#{addCmr.mediancw1}" type="text" class="form-control" style="width: 95%"  />
+                                        </p>
+                                        <p>
+                                            <label style="font-size: 15px" > median of cw2:</label>
+                                            <input value="#{addCmr.mediancw2}" type="text" class="form-control" style="width: 95%"  />
+                                        </p>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="panel panel-default" style="border: none">
+
+                                    <div class="panel-body">
+                                        <p>
+                                            <label style="font-size: 15px" > mean of exam:</label>
+                                            <input  value="#{addCmr.medianexam}" type="text" class="form-control" style="width: 95%"  />
+                                        </p>
+
+                                        <p>
+                                            <label style="font-size: 15px" > distribution of cw1 under 50:</label>
+                                            <h:selectOneMenu class="form-control" value="#{addCmr.distributioncw1type1}"  style="width: 95%">
+                                               <f:selectItem itemValue="" itemLabel="Please select Academic year" />
+                                                <f:selectItem itemValue="10" itemLabel="10"  />
+                                                <f:selectItem itemValue="20" itemLabel="20"  />
+                                                <f:selectItem itemValue="30" itemLabel="30"  />
+                                                <f:selectItem itemValue="40" itemLabel="40"  />
+                                                <f:selectItem itemValue="50" itemLabel="50"  />
+                                            </h:selectOneMenu>   
+
+                                        </p>
+
+                                        <p>
+                                            <label style="font-size: 15px" > distribution of cw2 under 50:</label>
+                                            <h:selectOneMenu class="form-control" value="#{addCmr.distributioncw2type1}"  style="width: 95%">
+                                                <f:selectItem itemValue="" itemLabel="Please select Academic year" />
+                                                <f:selectItem itemValue="10" itemLabel="10"  />
+                                                <f:selectItem itemValue="20" itemLabel="20"  />
+                                                <f:selectItem itemValue="30" itemLabel="30"  />
+                                                <f:selectItem itemValue="40" itemLabel="40"  />
+                                                <f:selectItem itemValue="50" itemLabel="50"  />
+                                            </h:selectOneMenu>   
+
+                                        </p>
+
+                                        <p>
+                                            <label style="font-size: 15px" >distribution under 50: </label>
+                                            <h:selectOneMenu class="form-control" value="#{addCmr.distributionexamtype1}" style="width: 95%">
+                                              <f:selectItem itemValue="" itemLabel="Please select Academic year" />
+                                                <f:selectItem itemValue="10" itemLabel="10"  />
+                                                <f:selectItem itemValue="20" itemLabel="20"  />
+                                                <f:selectItem itemValue="30" itemLabel="30"  />
+                                                <f:selectItem itemValue="40" itemLabel="40"  />
+                                                <f:selectItem itemValue="50" itemLabel="50"  />
+                                            </h:selectOneMenu>   
+
+                                        </p>
+
+                                        <p>
+                                            <label style="font-size: 15px" > distribution over 50 :</label>
+                                            <h:selectOneMenu class="form-control" value="#{addCmr.distributionexamtype2}" style="width: 95%">
+                                               <f:selectItem itemValue="" itemLabel="Please select Academic year" />
+                                                <f:selectItem itemValue="10" itemLabel="10"  />
+                                                <f:selectItem itemValue="20" itemLabel="20"  />
+                                                <f:selectItem itemValue="30" itemLabel="30"  />
+                                                <f:selectItem itemValue="40" itemLabel="40"  />
+                                                <f:selectItem itemValue="50" itemLabel="50"  />
+                                            </h:selectOneMenu>  
+<!--                                            <h:selectOneMenu value="#{assignCourse.year}" class="form-control">
+                                                <f:selectItem itemValue="" itemLabel="Please select Academic year" />
+                                                <f:selectItem itemValue="2016" itemLabel="2016" />
+                                                <f:selectItem itemValue="2017" itemLabel="2017" />
+                                            </h:selectOneMenu>      -->
+
+                                        </p>
+
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <h:commandButton action="#{addCmr.addCmr()}" class="btn btn-default" value="Add CMR"/>
+                    </h:form> 
+                </div>
+
+            </ui:define>
+
+        </ui:composition>
+
+    </h:body>
+</html>
+

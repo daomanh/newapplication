@@ -1,0 +1,66 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:k="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+     >
+
+    <h:head>
+        <title>list Courses</title>
+
+    </h:head>
+    <h:body>
+        <ui:composition template="./layout.xhtml">
+
+            <ui:define name="content">
+                <div class="col-sm-10">
+                    <h2>CREATE A NEW COURSE</h2>
+
+
+                    <c:if test="${addCourse.m != null}">
+                        <div class="alert alert-warning">
+                            <strong>Warning!</strong> #{addCourse.m}   
+                        </div>
+                    </c:if>
+                    <h:form class="addCourse" >
+                        <div class="form-group">
+                            <label for="description">Faculty</label>
+                            <h:selectOneMenu class="form-control" value="#{addCourse.FId}" id="fid">
+                                <f:selectItems itemValue="#{cate.FId}" itemLabel="#{cate.FName}" value="#{listFaculty.facultyList}" var="cate" />
+                            </h:selectOneMenu>                      
+                        </div>
+                        <div class="form-group">
+                            <label for="code">Code</label>
+                            <h:inputText class="form-control" id="code" value="#{addCourse.CCode}"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <h:inputText class="form-control" id="name" value="#{addCourse.CName}"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="description">Description</label>
+                            <h:inputTextarea style="width: 100%" rows="10" id="description" value="#{addCourse.CDescription}"/>
+
+                        </div>
+                        <div class="form-group" style="display: none" >
+                            <label for="name">Course Start</label>
+                            <h:inputText class="form-control" id="cstart" value="#{addCourse.CStart}"/>
+                        </div>
+                        <div class="form-group" style="display: none">
+                            <label for="name">Course End</label>
+                            <h:inputText class="form-control" id="cend" value="#{addCourse.CEnd}"/>
+                        </div>
+                        <h:commandButton action="#{addCourse.addCourse()}" class="btn btn-default" value="Add Course"/>
+                    </h:form> 
+                </div>
+
+            </ui:define>
+
+        </ui:composition>
+
+    </h:body>
+</html>
+

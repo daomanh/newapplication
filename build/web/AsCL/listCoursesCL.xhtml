@@ -1,0 +1,80 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">  
+    <h:head>
+        <title>list Courses</title>
+    </h:head>
+    <f:metadata>
+        <f:viewParam name="AId" value="#{listCourses.AId}"/>
+    </f:metadata>
+    <h:body>
+        <ui:composition template="./layoutCL.xhtml">
+
+            <ui:define name="content">                          
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h2>
+                            COURSE MANAGEMENT
+                        </h2>
+                    </div>
+                    <div class="panel-body">
+                        <table id="zctb" class="display table table-striped table-bordered table-hover" cellspacing="0" width="100%">
+                            <thead>
+                                <tr>
+                                    <th>Faculty</th>
+                                    <th>Code</th>
+                                    <th>Name</th>
+                                    <th>Description</th>
+                                    <th>Post on</th>
+                                    <th>Course start</th>
+                                    <th>Year end</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                <ui:repeat value="#{listCourses.courseList}" var="course">
+                                    <tr>
+                                        <td>#{course.FId}</td>
+                                        <td>#{course.CCode}</td>
+                                        <td>#{course.CName}</td>
+                                        <td>#{course.CDescription}</td>
+                                        <td>#{course.CPostOn}</td>
+                                        <td>#{course.CStart}</td>
+                                        <td>#{course.CEnd}</td>     
+                                        <td>
+                                            <ui:fragment rendered="#{listCmrForACourse.countCMR(course.CId) eq 0}">
+                                                <h:link outcome="addCmrCL" value="create">
+                                                    <f:param name="cId" value="#{course.CId}"/>
+                                                </h:link>
+                                            </ui:fragment>
+                                            <ui:fragment rendered="#{listCmrForACourse.countCMR(course.CId) eq 1}">
+                                                <h:link outcome="listCmrForACourseCL" value="View cmrs">
+                                                    <f:param name="cId" value="#{course.CId}"/>
+                                                </h:link>
+                                                <ui:fragment rendered="#{listCmrForACourse.checkCMR(course.CId) eq true}">
+                                                    <b>|</b>
+                                                    <h:form>
+                                                        <h:commandLink action="#{editCmr.editIndex()}" value=" Edit">
+                                                            <f:setPropertyActionListener target="#{editCmr.id}" value="#{course.CId}"/>
+                                                        </h:commandLink></h:form></ui:fragment>
+                                            </ui:fragment>
+                                        </td>
+                                    </tr> 
+                                </ui:repeat>
+
+                            </tbody>
+                        </table>                        
+                    </div>
+                </div>
+            </ui:define>
+
+        </ui:composition>
+
+    </h:body>
+</html>
+

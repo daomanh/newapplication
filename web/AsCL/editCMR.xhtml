@@ -1,0 +1,102 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:head>
+        <title>Add CMR</title>
+    </h:head>
+    <f:metadata>
+        <f:viewParam name="cId" value="#{editCmr.id}"/>
+    </f:metadata>
+    <h:body>
+        <ui:composition template="./layoutCL.xhtml">
+
+            <ui:define name="content">
+                <div class="col-sm-10">
+                    <c:if test="${editCmr.m != null}">
+                        <div class="alert alert-warning">
+                            <strong>Warning!</strong> #{editCmr.m}   
+                        </div>
+                    </c:if>
+                    <h:form >
+                        
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="panel panel-default" style="border: none">
+
+                                    <div class="panel-body" >                                            
+                                        <p>
+                                            <label style="font-size: 15px" > Student count: </label>
+                                            <input value="#{editCmr.studentCount}" type="text" class="form-control" style="width: 95%" />
+                                        </p>
+                                        <p>
+                                            <label style="font-size: 15px" > mean of cw1: </label>
+                                            <input value="#{editCmr.meancw1}" type="text" class="form-control" style="width: 95%"  />
+                                        </p>
+                                        <p>
+                                            <label style="font-size: 15px" >  mean of cw2: </label>
+                                            <input value="#{editCmr.meancw2}" type="text" class="form-control" style="width: 95%"  />
+                                        </p>
+                                        <p>
+                                            <label style="font-size: 15px" > SMean of exam: </label>
+                                            <input value="#{editCmr.meanexam}" type="text" class="form-control" style="width: 95%"  />
+                                        </p>
+                                        <p>
+                                            <label style="font-size: 15px" > median of cw1: </label>
+                                            <input value="#{editCmr.mediancw1}" type="text" class="form-control" style="width: 95%"  />
+                                        </p>
+                                        <p>
+                                            <label style="font-size: 15px" > median of cw2:</label>
+                                            <input value="#{editCmr.mediancw2}" type="text" class="form-control" style="width: 95%"  />
+                                        </p>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="panel panel-default" style="border: none">
+
+                                    <div class="panel-body">
+                                        <p>
+                                            <label style="font-size: 15px" > mean of exam:</label>
+                                            <input  value="#{editCmr.medianexam}" type="text" class="form-control" style="width: 95%"  />
+                                        </p>
+
+                                        <p>
+                                            <label style="font-size: 15px" > distribution of cw1 under 50:</label>
+                                            <input  value="#{editCmr.distributioncw1type1}" type="text" class="form-control" style="width: 95%" />
+                                        </p>
+
+                                        <p>
+                                            <label style="font-size: 15px" > distribution of cw2 under 50:</label>
+                                            <input value="#{editCmr.distributioncw2type1}" type="text" class="form-control" style="width: 95%" />
+                                        </p>
+
+                                        <p>
+                                            <label style="font-size: 15px" >distribution under 50: </label>
+                                            <input value="#{editCmr.distributionexamtype1}" type="text" class="form-control" style="width: 95%" />
+                                        </p>
+                                       
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        
+                        
+                        <h:commandButton action="#{editCmr.editCMRR()}" class="btn btn-default" value="edit CMR"/>
+                    </h:form> 
+                </div>
+
+            </ui:define>
+
+        </ui:composition>
+
+    </h:body>
+</html>
+

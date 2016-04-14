@@ -1,0 +1,93 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+       xmlns:u="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">  
+    <f:metadata>
+        <f:viewParam name="FId" value="#{listCoursesInAFaculty.FId}"/>
+    </f:metadata>
+    <h:head>
+        <title>list Courses</title>
+    </h:head>
+
+    <h:body>
+        <ui:composition template="./layout.xhtml">
+
+            <ui:define name="content">
+
+                <ui:repeat value="#{listCourses.facultyList}" var="faculty">
+                    <h2>COURSES IN A FACULTY : #{faculty.FName} </h2>
+               
+                
+                <p>All Courses managed by the faculty</p>    
+                
+                   
+                <p><h:form><h:commandButton class="btn btn-default" action="#{listFaculty.index()}" value="Back to faculty list"/></h:form></p>            
+                 <h:form>
+                    <h:inputText value="#{searchCourse.key}"  u:placeholder=" search text here..."/>
+                    <h:commandButton action="#{searchCourse.searchCourse()}"  value="Search">
+                       
+                            <f:setPropertyActionListener target="#{searchCourse.FId}" value="#{faculty.FId}"/>
+                    </h:commandButton>
+
+                </h:form>
+                 </ui:repeat>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Faculty</th>
+                            <th>Code</th>
+                            <th>Name</th>
+                            <th>Description</th>
+                            <th>Post on</th>
+                            <th>Action</th>
+                            <th>Assignment Tasks</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <ui:repeat value="#{searchCourse.listCourse}" var="course">
+                            <tr>
+                                <td>#{course.FId}</td>
+                                <td>#{course.CCode}</td>
+                                <td>#{course.CName}</td>
+                                <td>#{course.CDescription}</td>
+                                <td>#{course.CPostOn}</td>
+                                <td>
+<!--                                    <h:link outcome="editCourse" value="Edit">
+                                        <f:param name="cId" value="#{course.CId}"/>
+                                        <f:param name="fId" value="#{course.FId}"/>
+                                    </h:link>
+                                    <b>|</b>-->
+
+                                    <h:form>
+                                        <h:commandLink action="#{editCourse.editIndex()}"  value="Edit" >
+                                            <f:setPropertyActionListener target="#{editCourse.CId}" value="#{course.CId}"/>
+                                            <f:setPropertyActionListener target="#{editCourse.FId}" value="#{course.FId}"/> 
+                                        </h:commandLink>
+                                        <b>|</b>
+                                        <h:commandLink action="#{deleteCourse.deleteCourse()}" value="delete" onclick="return confirm('Are you sure you want to delete?')" >
+                                            <f:setPropertyActionListener target="#{deleteCourse.CId}" value="#{course.CId}"/>
+                                        </h:commandLink>
+                                    </h:form>
+                                </td>
+                                <td>
+                                    <h:link outcome="assignCourse" value="Assign">
+                                        <f:param name="cId" value="#{course.CId}"/>
+                                    </h:link><b> | </b>
+                                    <h:link outcome="listAssignementForACourse" value="View assignment">
+                                        <f:param name="cId" value="#{course.CId}"/>
+                                    </h:link>
+                                </td>
+                            </tr> 
+                        </ui:repeat>
+                    </tbody>
+                </table>
+            </ui:define>
+
+        </ui:composition>
+
+    </h:body>
+</html>
+

@@ -1,0 +1,78 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">  
+    <f:metadata>
+        <f:viewParam name="cId" value="#{listCmrForACourse.CId}"/>
+    </f:metadata>
+    <h:head>
+        <title>list CMR</title>
+    </h:head>
+
+    <h:body>
+        <ui:composition template="./layout.xhtml">
+            <ui:define name="content">
+                <h2>CMR For course number : #{listCmrForACourse.courseName}</h2>
+                <h:link outcome="listCoursesInAFaculty" value="back" class="btn btn-default">
+                    <f:param name="FId" value="#{listCmrForACourse.FId}"/>
+                </h:link>
+
+                
+                    <div class="panel panel-default">
+                        <div class="panel-heading">Bordered table</div>
+                        <div class="panel-body">
+                            <table class="display table table-striped table-bordered table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>id</th>
+                                        <th>course id</th>
+                                        <th>student count</th>
+                                        <th>mean of cw1</th>
+                                        <th>mean of cw2</th>
+                                        <th>mean of exam</th>
+                                        <th>median of cw1</th>
+                                        <th>median of cw2</th>
+                                        <th>mean of exam</th>
+                                        <th>distribution of cw1 under 50</th>
+                                        <th>distribution of cw2 under 50</th>
+                                        <th>distribution of exam under 50</th>
+                                        <th></th>       
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <ui:repeat value="#{listCmrForACourse.cmrList}" var="cmr">
+                                        <tr>
+                                            <td>#{cmr.id}</td>
+                                            <td>#{cmr.cid}</td>
+                                            <td>#{cmr.studentCount}</td>
+                                            <td>#{cmr.meancw1}</td>
+                                            <td>#{cmr.meancw2}</td>
+                                            <td>#{cmr.meanexam}</td>
+                                            <td>#{cmr.mediancw1}</td>
+                                            <td>#{cmr.mediancw2}</td>
+                                            <td>#{cmr.meanexam}</td>
+                                            <td>#{cmr.distributioncw1type1}</td>
+                                            <td>#{cmr.distributioncw2type1}</td>
+                                            <td>#{cmr.distributionexamtype1}</td>
+                                            <td>#{cmr.status}</td>
+                                            
+                                        </tr> 
+                                    </ui:repeat>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                
+
+
+
+            </ui:define>
+
+        </ui:composition>
+
+    </h:body>
+</html>
+

@@ -1,0 +1,59 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+          
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:head>
+        <title>ADD FACULTY</title>
+    </h:head>
+     <f:metadata>
+         <f:viewParam name="fId" value="#{editFaculty.FId}"/>
+    </f:metadata>
+    <h:body>
+        <ui:composition template="./layout.xhtml">
+
+            <ui:define name="content">
+                <div class="col-sm-10">
+                    <h2>EDIT FACULTY :</h2>
+
+
+                    <c:if test="${editFaculty.m != null}">
+                        <div class="alert alert-warning">
+                            <strong>Warning!</strong> #{editFaculty.m}   
+                        </div>
+                    </c:if>
+
+                    <h:form >
+                        <div class="form-group">
+                            <label for="name">Faculty name :</label>
+                            <h:inputText class="form-control" id="name" value="#{editFaculty.FName}"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="description">Director of learning of this faculty :</label>
+                            <h:selectOneMenu class="form-control" value="#{editFaculty.AIdDLT}" id="fid">
+                                <f:selectItem itemValue="" itemLabel="Please select course leader" />
+                                <f:selectItems itemValue="#{cate.getaId()}" itemLabel="#{cate.getaUsername()}" value="#{fetchAccount.DLT}" var="cate" />
+                            </h:selectOneMenu>                      
+                        </div>
+                        <div class="form-group">
+                            <label for="description">Pro-Vice Chancellor of this faculty :</label>
+                            <h:selectOneMenu class="form-control" value="#{editFaculty.AIdPVC}" id="fid2">
+                                <f:selectItem itemValue="" itemLabel="Please select course Moderator" />
+                                <f:selectItems itemValue="#{cate.getaId()}" itemLabel="#{cate.getaUsername()}" value="#{fetchAccount.PVC}" var="cate" />
+                            </h:selectOneMenu>                      
+                        </div>
+                        <h:commandButton action="#{editFaculty.editFaculty()}" class="btn btn-default" value="Edit this faculty"/>
+                    </h:form> 
+                </div>
+
+            </ui:define>
+
+        </ui:composition>
+
+    </h:body>
+</html>
+

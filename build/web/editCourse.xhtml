@@ -1,0 +1,68 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:head>
+        <title>list Courses</title>
+    </h:head>
+    <f:metadata>
+        <f:viewParam name="cId" value="#{editCourse.CId}"/>
+        <f:viewParam name="fId" value="#{editCourse.FId}"/>
+    </f:metadata>
+    <h:body>
+        <ui:composition template="./layout.xhtml">
+
+            <ui:define name="content">
+                <div class="col-sm-10">
+                    <h2>EDIT COURSE</h2>
+
+
+                    <c:if test="${editCourse.m != null}">
+                        <div class="alert alert-warning">
+                            <strong>Warning!</strong> #{editCourse.m}   
+                        </div>
+                    </c:if>
+
+                    <h:form enctype="multipart/form-data">
+                        <div class="form-group">
+                            <label for="description">Faculty</label>
+                            <h:selectOneMenu class="form-control" value="#{editCourse.FId}" id="fid">
+                                <f:selectItems itemValue="#{cate.FId}" itemLabel="#{cate.FName}" value="#{listFaculty.facultyList}" var="cate" />
+                            </h:selectOneMenu>                      
+                        </div>
+                        <div class="form-group">
+                            <label for="code">Code</label>
+                            <h:inputText class="form-control" id="code" value="#{editCourse.CCode}"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <h:inputText class="form-control" id="name" value="#{editCourse.CName}"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="description">Description</label>
+                            <h:inputText class="form-control" id="description" value="#{editCourse.CDescription}"/>
+                        </div>
+<!--                        <div class="form-group">
+                            <label for="description">Course start</label>
+                            <h:inputText class="form-control" id="cstart" value="#{editCourse.CStart}"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="description">Course end </label>
+                            <h:inputText class="form-control" id="cend" value="#{editCourse.CEnd}"/>
+                        </div>-->
+                        <h:commandButton action="#{editCourse.editCourse()}" class="btn btn-default" value="Add Course"/>
+                    </h:form> 
+                </div>
+
+            </ui:define>
+
+        </ui:composition>
+
+    </h:body>
+</html>
+
